@@ -1,0 +1,17 @@
+<div>
+    <h2>Get Request (Hospitals) https://localhost:5001/api/hospitals/</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hospital of hospitalList">
+          <td>{{ hospital.name }}</td>
+          <td>{{ hospital.address }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
