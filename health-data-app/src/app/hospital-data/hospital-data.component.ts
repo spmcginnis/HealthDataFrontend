@@ -7,6 +7,7 @@ import { Hospitals } from '../dataClasses/hospitals';
   templateUrl: './hospital-data.component.html',
   styleUrls: ['./hospital-data.component.css']
 })
+
 export class HospitalDataComponent implements OnInit {
   hospitalList: Hospitals[];
 
@@ -16,6 +17,8 @@ export class HospitalDataComponent implements OnInit {
     this._apiService.getHospitals().subscribe(
       data => { this.hospitalList = data; }
     );
+
+
   }
 
 }

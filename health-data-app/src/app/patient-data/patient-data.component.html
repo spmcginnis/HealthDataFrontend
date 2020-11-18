@@ -1,26 +1,27 @@
 <app-header></app-header>
-<div>
-    <h2>Get Request (Patients) https://localhost:5001/api/patients/</h2>
-    <table class="table table-dark table-hover">
-      <thead>
-        <tr>
-          <th>Given Name</th>
-          <th>Family Name</th>
-          <th>Zip Code</th>
-          <th>Age</th>
-          <th>Primary Language</th>
-          <th>Primary Hospital</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let patient of patientList">
-          <td>{{ patient.givenName }}</td>
-          <td>{{ patient.familyName }}</td>
-          <td>{{ patient.zip }}</td>
-          <td>{{ patient.dob }} TODO: calculate age from dob</td>
-          <td>{{ patient.languageCode }} TODO: map code to language</td>
-          <td>{{ patient.hospitalCode }} TODO: query hospital list</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+
+<div class="scroll">
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th>Given Name</th>
+        <th>Family Name</th>
+        <th>Zip Code</th>
+        <th>Age</th>
+        <th>Primary Language</th>
+        <th>Primary Hospital</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of patientList">
+        <td>{{ patient.givenName }}</td>
+        <td>{{ patient.familyName }}</td>
+        <td>{{ patient.zip }}</td>
+        <td>{{ patient.dob }} TODO: calculate age from dob</td>
+        <td>{{ patient.languageCode }} TODO: map code to language</td>
+        <td>{{ patient.hospitalCode }} TODO: query hospital list</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>Get Request (Patients) https://localhost:5001/api/patients/</p>

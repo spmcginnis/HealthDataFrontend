@@ -10,7 +10,7 @@ import { apiService } from '../services/api.service';
 export class PatientDataComponent implements OnInit {
   patientList: Patients[];
 
-  constructor(private _apiService: apiService) { }
+  public constructor(private _apiService: apiService) { }
 
   ngOnInit() {
     this._apiService.getPatients().subscribe(
