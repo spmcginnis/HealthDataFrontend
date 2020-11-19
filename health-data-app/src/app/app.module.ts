@@ -8,12 +8,18 @@ import { PatientDataComponent } from './patient-data/patient-data.component';
 import { HospitalDataComponent } from './hospital-data/hospital-data.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { SearchComponent } from './search/search.component';
+import { MapComponent } from './map/map.component';
+import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'patientList', component: PatientDataComponent},
-  {path: 'hospitalList', component: HospitalDataComponent}
+  {path: 'hospitalList', component: HospitalDataComponent},
+  {path: 'search', component: SearchComponent},
+  {path: 'map', component: MapComponent},
+  {path: 'edit', component: EditComponent}
 ];
 
 @NgModule({
@@ -22,7 +28,12 @@ const routes: Routes = [
     HeaderComponent,
     PatientDataComponent,
     HospitalDataComponent,
-    HomeComponent
+    HomeComponent,
+    SearchComponent,
+    MapComponent,
+    SearchComponent,
+    MapComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
