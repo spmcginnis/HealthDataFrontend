@@ -15,3 +15,7 @@ export class apiService
         return this.client.get("https://localhost:5001/api/hospitals/")
     }
 }
+
+// Possible approaches:
+// Make a second class for the flat-file version.
+// Put it in a try?  Not for when it's a different application mode.
