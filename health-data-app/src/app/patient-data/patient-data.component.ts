@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { stringify } from 'querystring';
+import { Hospitals } from '../dataClasses/hospitals';
 import { Patients } from '../dataClasses/patients';
 import { apiService } from '../services/api.service';
 
@@ -8,8 +9,10 @@ import { apiService } from '../services/api.service';
   templateUrl: './patient-data.component.html',
   styleUrls: ['./patient-data.component.css']
 })
+
 export class PatientDataComponent implements OnInit {
   patientList: Patients[];
+  hospitalList: Hospitals[];
   todayDate = new Date(Date.parse(Date()))
 
   public constructor(private _apiService: apiService) { }
@@ -18,9 +21,13 @@ export class PatientDataComponent implements OnInit {
     this._apiService.getPatients().subscribe(
       data => { this.patientList = data; }
     );
+
+    this._apiService.getHospitals().subscribe(
+      data => { this.hospitalList = data; }
+    );
   }
 
-  private convertDate(dateValue) {
+  private convertToAge(dateValue) {
 
     let birthYYYY:number = +String(dateValue).slice(0,4);
     let birthMMDD:number = +String(dateValue).slice(4,8);
@@ -52,8 +59,17 @@ export class PatientDataComponent implements OnInit {
       eng = "English"
     }
 
-    console.log(CodeMapping[langCode])
+    //console.log(CodeMapping[langCode])
     return CodeMapping[langCode]
   }
+
+  private hospitalNameFromCode(hospCode) {
+    for (let hospital of this.hospitalList) {
+      if (hospital.hospitalCode == hospCode) {
+        return hospital.name;
+      } 
+    }
+  }
+
 
 }

@@ -17,9 +17,9 @@
         <td>{{ patient.givenName }}</td>
         <td>{{ patient.familyName }}</td>
         <td>{{ patient.zip }}</td>
-        <td>{{ convertDate(patient.dob) }}</td>
+        <td>{{ convertToAge(patient.dob) }}</td>
         <td>{{ languageFromCode(patient.languageCode) }}</td>
-        <td>{{ patient.hospitalCode }} TODO: query hospital list</td>
+        <td>{{ hospitalNameFromCode(patient.hospitalCode)}}</td>
       </tr>
     </tbody>
   </table>
