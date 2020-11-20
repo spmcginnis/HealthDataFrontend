@@ -17,8 +17,8 @@
         <td>{{ patient.givenName }}</td>
         <td>{{ patient.familyName }}</td>
         <td>{{ patient.zip }}</td>
-        <td>{{ patient.dob }} TODO: calculate age from dob</td>
-        <td>{{ patient.languageCode }} TODO: map code to language</td>
+        <td>{{ convertDate(patient.dob) }}</td>
+        <td>{{ languageFromCode(patient.languageCode) }}</td>
         <td>{{ patient.hospitalCode }} TODO: query hospital list</td>
       </tr>
     </tbody>

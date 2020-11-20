@@ -7,8 +7,11 @@ export class Patients
     city:string;
     state:string;
     zip:number;
-    dob:number;
+    dob:string;
     gender:string;
     languageCode:string;
     hospitalCode:string;
+
+
+
 }
