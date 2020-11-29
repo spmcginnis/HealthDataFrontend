@@ -8,16 +8,16 @@ import { PatientDataComponent } from './patient-data/patient-data.component';
 import { HospitalDataComponent } from './hospital-data/hospital-data.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { SearchComponent } from './search/search.component';
 import { MapComponent } from './map/map.component';
 import { EditComponent } from './edit/edit.component';
+import { FilterPipe } from './patient-data/filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'patientList', component: PatientDataComponent},
   {path: 'hospitalList', component: HospitalDataComponent},
-  {path: 'search', component: SearchComponent},
   {path: 'map', component: MapComponent},
   {path: 'edit', component: EditComponent}
 ];
@@ -29,16 +29,18 @@ const routes: Routes = [
     PatientDataComponent,
     HospitalDataComponent,
     HomeComponent,
-    SearchComponent,
+
     MapComponent,
-    SearchComponent,
+
     MapComponent,
-    EditComponent
+    EditComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule
   ],
   providers: [apiService],
   bootstrap: [AppComponent]

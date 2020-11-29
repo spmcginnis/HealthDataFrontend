@@ -14,6 +14,9 @@ export class PatientDataComponent implements OnInit {
   patientList: Patients[];
   hospitalList: Hospitals[];
   todayDate = new Date(Date.parse(Date()))
+  searchFilter: string;
+
+
 
   public constructor(private _apiService: apiService) { }
 
@@ -27,7 +30,7 @@ export class PatientDataComponent implements OnInit {
     );
   }
 
-  private convertToAge(dateValue) {
+  convertToAge(dateValue) {
 
     let birthYYYY:number = +String(dateValue).slice(0,4);
     let birthMMDD:number = +String(dateValue).slice(4,8);
@@ -49,7 +52,7 @@ export class PatientDataComponent implements OnInit {
     return age
   }
 
-  private languageFromCode(langCode) {
+  languageFromCode(langCode) {
 
     enum CodeMapping {
       vie = "Vietnamese",
@@ -63,7 +66,7 @@ export class PatientDataComponent implements OnInit {
     return CodeMapping[langCode]
   }
 
-  private hospitalNameFromCode(hospCode) {
+  public hospitalNameFromCode(hospCode) {
     for (let hospital of this.hospitalList) {
       if (hospital.hospitalCode == hospCode) {
         return hospital.name;
