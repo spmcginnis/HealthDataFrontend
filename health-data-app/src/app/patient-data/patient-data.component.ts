@@ -39,7 +39,7 @@ export class PatientDataComponent implements OnInit {
     let nowMMDD:number =
       (this.todayDate.getMonth()+1) *100 
       + this.todayDate.getDate();
-      // I had to add one to the month because it was not returning an ordinal number.  This seems like a bug.
+      // I had to add one to the month.  This seems like a bug in the getMonth() function.
     
     let age:number = nowYYYY - birthYYYY ;
     if (nowMMDD >= birthMMDD){

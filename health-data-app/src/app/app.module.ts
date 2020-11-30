@@ -9,7 +9,6 @@ import { HospitalDataComponent } from './hospital-data/hospital-data.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { MapComponent } from './map/map.component';
-import { EditComponent } from './edit/edit.component';
 import { FilterPipe } from './patient-data/filter.pipe';
 import { FormsModule } from '@angular/forms';
 
@@ -18,8 +17,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'patientList', component: PatientDataComponent},
   {path: 'hospitalList', component: HospitalDataComponent},
-  {path: 'map', component: MapComponent},
-  {path: 'edit', component: EditComponent}
+  {path: 'map', component: MapComponent}
 ];
 
 @NgModule({
@@ -29,11 +27,8 @@ const routes: Routes = [
     PatientDataComponent,
     HospitalDataComponent,
     HomeComponent,
-
     MapComponent,
-
     MapComponent,
-    EditComponent,
     FilterPipe
   ],
   imports: [
