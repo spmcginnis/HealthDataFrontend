@@ -1,5 +1,6 @@
 export class Patients
 {
+    // Properties correspond to data fields in the API.
     id:string;
     givenName:string;
     familyName:string;
@@ -14,4 +15,6 @@ export class Patients
 
 
 
+
+    
 }

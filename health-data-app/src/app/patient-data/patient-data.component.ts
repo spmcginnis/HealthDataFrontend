@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Console } from 'console';
 import { stringify } from 'querystring';
 import { Hospitals } from '../dataClasses/hospitals';
 import { Patients } from '../dataClasses/patients';
@@ -66,7 +67,7 @@ export class PatientDataComponent implements OnInit {
     return CodeMapping[langCode]
   }
 
-  public hospitalNameFromCode(hospCode) {
+  hospitalNameFromCode(hospCode) {
     for (let hospital of this.hospitalList) {
       if (hospital.hospitalCode == hospCode) {
         return hospital.name;
