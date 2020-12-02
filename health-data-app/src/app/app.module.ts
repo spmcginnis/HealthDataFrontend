@@ -9,7 +9,6 @@ import { HospitalDataComponent } from './hospital-data/hospital-data.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { MapComponent } from './map/map.component';
-import { FilterPipe } from './patient-data/filter.pipe';
 import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
@@ -28,8 +27,7 @@ const routes: Routes = [
     HospitalDataComponent,
     HomeComponent,
     MapComponent,
-    MapComponent,
-    FilterPipe
+    MapComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Console } from 'console';
-import { stringify } from 'querystring';
 import { Hospitals } from '../dataClasses/hospitals';
 import { Patients } from '../dataClasses/patients';
 import { apiService } from '../services/api.service';
@@ -15,21 +13,84 @@ export class PatientDataComponent implements OnInit {
   patientList: Patients[];
   hospitalList: Hospitals[];
   todayDate = new Date(Date.parse(Date()))
-  searchFilter: string;
-
-
-
+  searchFilter: string; // for the text box
+  searchField; // for the radio filter
+  textInput: string; // for the test input text field
+  outputList: Patients[];
   public constructor(private _apiService: apiService) { }
 
   ngOnInit() {
     this._apiService.getPatients().subscribe(
-      data => { this.patientList = data; }
+      data => { this.patientList = data; this.outputList = data; }
     );
 
     this._apiService.getHospitals().subscribe(
       data => { this.hospitalList = data; }
     );
+
+
+    //initialize search data model?
+    
+    this.searchField = this.radios[0].value;
+    console.log (this.searchField)
   }
+
+  // Method to process the form information
+  // This happens when the submit button is pressed
+  // It needs to drive the filtering of the table.
+  public processForm(value, isValid: boolean) {
+    console.log("button pressed")
+    
+
+    //starting from the existing filter...
+    this.outputList = this.patientList;
+    console.log("output list test: ", this.outputList[0]);
+
+    if (!this.patientList) {
+      return [];
+    }
+    if (!this.textInput || !this.searchField) {
+      return this.patientList
+    }
+
+    this.textInput = this.textInput.toLowerCase();
+
+    console.log("text input: ", this.textInput);
+    console.log("search field radio test: ", this.searchField)
+
+
+    this.outputList = this.outputList.filter(item => {
+      let language = this.languageFromCode(item.languageCode);
+      let values: string;
+      if (this.searchField == "name") {
+        values = `${item.familyName} ${item.givenName}`;  
+      }
+      if (this.searchField == "zip") {
+        values = String(item.zip)
+      }
+      if (this.searchField == "lang") {
+        values = language
+      }
+      if (this.searchField == "hospital") {
+        values = this.hospitalNameFromCode(item.hospitalCode)
+      }
+
+      if (values.toLowerCase().includes(this.textInput)) {
+        return item;
+      }
+    })
+
+    return this.outputList
+
+  }
+
+  // "Standing Data" for form processing.
+  public radios = [
+    { value: 'name', display: 'First or Last Name'},
+    { value: 'zip', display: 'Zip Code'},
+    { value: 'lang', display: 'Language'},
+    { value: 'hospital', display: 'Hospital'}
+  ]
 
   convertToAge(dateValue) {
 

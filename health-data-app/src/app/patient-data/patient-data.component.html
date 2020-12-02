@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let patient of patientList | filter: searchFilter">
+      <tr *ngFor="let patient of outputList">
         <td>{{ patient.givenName }}</td>
         <td>{{ patient.familyName }}</td>
         <td>{{ patient.zip }}</td>
@@ -29,11 +29,27 @@
     </tbody>
   </table>
 </div>
-<div class="form-group row">
-  <label for="searchFilter" class="col-sm-2 col-form-label">Search Filter</label>
-  <div class="col-sm-10">
-    <input id="searchFilter" type="search" [(ngModel)]="searchFilter" placeholder="Input Filter Text" class="form-control" />
-  </div>
-</div>
 
 <p>Get Request (Patients) https://localhost:5001/api/patients/</p>
+
+<form #f="ngForm" novalidate>
+  
+  <div>
+    <label>Search Input</label>
+    <input type="text" name="testName" [(ngModel)]="textInput">
+  </div>
+
+  <div>
+    <label>Search by:</label>
+    <div *ngFor="let n of radios">
+      <label>
+        <input type="radio" name="n" [(ngModel)]="searchField" [value]="n.value">
+        {{n.display}}
+      </label>
+    </div>
+  </div>
+
+
+
+  <button type="submit" (click)="processForm(f.value, f.valid)">Submit</button>
+</form>
