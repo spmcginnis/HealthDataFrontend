@@ -86,7 +86,7 @@ export class PatientDataComponent implements OnInit {
 
   // "Standing Data" for form processing.
   public radios = [
-    { value: 'name', display: 'First or Last Name'},
+    { value: 'name', display: 'Name (given or family)'},
     { value: 'zip', display: 'Zip Code'},
     { value: 'lang', display: 'Language'},
     { value: 'hospital', display: 'Hospital'}

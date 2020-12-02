@@ -21,35 +21,42 @@
         <td>{{ languageFromCode(patient.languageCode) }}</td>
         <td>{{ hospitalNameFromCode(patient.hospitalCode)}}</td>
         <div class="button-container">
-          <button class="btn btn-primary">View</button>
-          <button class="btn btn-primary">Edit</button>
+          <button class="btn btn-info">View</button>
+          <button class="btn btn-info">Edit</button>
           <button class="btn btn-danger">Delete</button>
         </div>
       </tr>
     </tbody>
   </table>
 </div>
-
-<p>Get Request (Patients) https://localhost:5001/api/patients/</p>
-
-<form #f="ngForm" novalidate>
+<div class="spm-form-box">
+  <form #f="ngForm" novalidate>
   
-  <div>
-    <label>Search Input</label>
-    <input type="text" name="testName" [(ngModel)]="textInput">
-  </div>
-
-  <div>
-    <label>Search by:</label>
-    <div *ngFor="let n of radios">
-      <label>
-        <input type="radio" name="n" [(ngModel)]="searchField" [value]="n.value">
-        {{n.display}}
-      </label>
+    <div class="form-group form-inline row">
+      <div class="col-sm-2"></div>
+      <input
+        id="textInput"
+        class="col-sm-6 form-control form-control-sm"
+        type="text" name="testName" [(ngModel)]="textInput"
+        placeholder="Search Text (partial matches accepted)">
     </div>
-  </div>
-
-
-
-  <button type="submit" (click)="processForm(f.value, f.valid)">Submit</button>
-</form>
+    <div class="form-group row">
+      <div class="col-sm-2"></div>
+      <div class="form-check form-check-inline col-sm-6">
+        <div *ngFor="let n of radios" >
+          <input class="form-check-input" type="radio" name="radioSelector" [id]="'radio-for-' + n.value" [(ngModel)]="searchField" [value]="n.value">
+          <label class="form-check-label spm-form-label" [for]="'radio-for-' + n.value">{{n.display}}</label>
+        </div>
+        
+      </div>
+  
+    </div>
+  
+    <div class="form-group row">
+      <div class="col-sm-2"></div>
+      <button class="col-sm-2 btn btn-info" type="submit" (click)="processForm(f.value, f.valid)">Submit</button>
+    </div>
+  
+  </form>
+  
+</div>
