@@ -13,10 +13,10 @@ export class PatientDataComponent implements OnInit {
   patientList: Patients[];
   hospitalList: Hospitals[];
   todayDate = new Date(Date.parse(Date()))
-  searchFilter: string; // for the text box
   searchField; // for the radio filter
   textInput: string; // for the test input text field
   outputList: Patients[];
+
   public constructor(private _apiService: apiService) { }
 
   ngOnInit() {
@@ -28,22 +28,16 @@ export class PatientDataComponent implements OnInit {
       data => { this.hospitalList = data; }
     );
 
-
     //initialize search data model?
-    
-    this.searchField = this.radios[0].value;
-    console.log (this.searchField)
+    this.searchField = this.radios[0].value; // Is this necessary anymore?
   }
 
   // Method to process the form information
   // This happens when the submit button is pressed
   // It needs to drive the filtering of the table.
   public processForm(value, isValid: boolean) {
-    console.log("button pressed")
-    
+    this.resetData("soft");
 
-    //starting from the existing filter...
-    this.outputList = this.patientList;
     console.log("output list test: ", this.outputList[0]);
 
     if (!this.patientList) {
@@ -57,7 +51,6 @@ export class PatientDataComponent implements OnInit {
 
     console.log("text input: ", this.textInput);
     console.log("search field radio test: ", this.searchField)
-
 
     this.outputList = this.outputList.filter(item => {
       let language = this.languageFromCode(item.languageCode);
@@ -74,7 +67,6 @@ export class PatientDataComponent implements OnInit {
       if (this.searchField == "hospital") {
         values = this.hospitalNameFromCode(item.hospitalCode)
       }
-
       if (values.toLowerCase().includes(this.textInput)) {
         return item;
       }
@@ -82,6 +74,11 @@ export class PatientDataComponent implements OnInit {
 
     return this.outputList
 
+  }
+
+  public resetData(soft?:string) {
+    this.outputList = this.patientList;
+    if (!soft) {this.textInput = ''}
   }
 
   // "Standing Data" for form processing.
@@ -114,8 +111,9 @@ export class PatientDataComponent implements OnInit {
     return age
   }
 
-  languageFromCode(langCode) {
 
+  // Methods for processing the data
+  languageFromCode(langCode) {
     enum CodeMapping {
       vie = "Vietnamese",
       bos = "Bosnian",
@@ -123,8 +121,6 @@ export class PatientDataComponent implements OnInit {
       spa = "Spanish",
       eng = "English"
     }
-
-    //console.log(CodeMapping[langCode])
     return CodeMapping[langCode]
   }
 
