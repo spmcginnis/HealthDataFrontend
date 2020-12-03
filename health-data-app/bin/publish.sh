@@ -1,6 +1,13 @@
-#!/bin/bash -ex
+#!/bin/bash
 
-# check current working directory to make sure it is the right one before proceeding
+# check current working directory to make sure it is the right one before proceeding, else error message and bail
+if [[ "$0" != "bin/publish.sh" ]];
+then
+    echo "ERR: Please run from the project directory."
+    exit 1
+fi
+
+set -exuo pipefail
 
 function clearDist () {
     
