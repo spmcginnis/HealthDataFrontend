@@ -16,7 +16,8 @@ const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'patientList', component: PatientDataComponent},
   {path: 'hospitalList', component: HospitalDataComponent},
-  {path: 'map', component: MapComponent}
+  {path: 'map', component: MapComponent},
+  {path: '**', redirectTo: '/home'}
 ];
 
 @NgModule({
