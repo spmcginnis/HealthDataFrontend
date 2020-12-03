@@ -1,5 +1,7 @@
 #!/bin/bash -ex
 
+# check current working directory to make sure it is the right one before proceeding
+
 function clearDist () {
     
 rm -rf dist
@@ -7,7 +9,7 @@ rm -rf dist
 
 clearDist
 
-ng build --base-href "https://spmcginnis.github.io/HealthDataFrontend/" --deploy-url "https://spmcginnis.github.io/HealthDataFrontend/"
+ng build --prod --base-href "https://spmcginnis.github.io/HealthDataFrontend/" --deploy-url "https://spmcginnis.github.io/HealthDataFrontend/"
 
 pushd dist/health-data-app
 
