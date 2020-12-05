@@ -10,6 +10,7 @@
         <th>Age</th>
         <th>Primary Language</th>
         <th>Primary Hospital</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -20,11 +21,9 @@
         <td>{{ convertToAge(patient.dob) }}</td>
         <td>{{ languageFromCode(patient.languageCode) }}</td>
         <td>{{ hospitalNameFromCode(patient.hospitalCode)}}</td>
-        <div class="button-container">
-          <button class="btn btn-info">View</button>
-          <button class="btn btn-info">Edit</button>
-          <button class="btn btn-danger">Delete</button>
-        </div>
+        <td class="button-container">
+          <button class="btn btn-outline-info btn-sm">Edit</button>
+        </td>
       </tr>
     </tbody>
   </table>
