@@ -56,7 +56,7 @@
       <div class="col-sm-2"></div>
       <button class="col-sm-2 btn btn-info" type="submit" (click)="processForm(f.value, f.valid)">Submit</button>
       <div class="col-sm-2"></div>
-      <button class="col-sm-2 btn btn-info" type="submit" (click)="resetData()">Reset</button>
+      <button class="col-sm-2 btn btn-info" type="submit" (click)="resetData(); resetForm()">Reset</button>
     </div>
   
   </form>

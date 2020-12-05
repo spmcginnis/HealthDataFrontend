@@ -10,12 +10,22 @@ import { apiService } from '../services/api.service';
 })
 
 export class PatientDataComponent implements OnInit {
+  todayDate = new Date(Date.parse(Date()))
+
+  // Data Lists
   patientList: Patients[];
   hospitalList: Hospitals[];
-  todayDate = new Date(Date.parse(Date()))
-  searchField; // for the radio filter
+
+  // Data for form processing.
+  radios = [
+    { value: 'name', display: 'Name (given or family)'},
+    { value: 'zip', display: 'Zip Code'},
+    { value: 'lang', display: 'Language'},
+    { value: 'hospital', display: 'Hospital'}
+  ]
   textInput: string; // for the test input text field
-  outputList: Patients[];
+  outputList: Patients[]; // for storing the filtered list
+  searchField:string; // for the radio filter
 
   public constructor(private _apiService: apiService) { }
 
@@ -28,15 +38,15 @@ export class PatientDataComponent implements OnInit {
       data => { this.hospitalList = data; }
     );
 
-    //initialize search data model?
-    this.searchField = this.radios[0].value; // Is this necessary anymore?
+    this.resetData();
+    this.resetForm();
   }
 
   // Method to process the form information
   // This happens when the submit button is pressed
   // It needs to drive the filtering of the table.
   public processForm(value, isValid: boolean) {
-    this.resetData("soft");
+    this.resetData();
 
     console.log("output list test: ", this.outputList[0]);
 
@@ -76,18 +86,17 @@ export class PatientDataComponent implements OnInit {
 
   }
 
-  public resetData(soft?:string) {
+  // Form and Data Reset Methods
+  public resetForm() {
+    this.textInput = '';
+    this.searchField = this.radios[0].value;
+  }
+  
+  public resetData() {
     this.outputList = this.patientList;
-    if (!soft) {this.textInput = ''}
   }
 
-  // "Standing Data" for form processing.
-  public radios = [
-    { value: 'name', display: 'Name (given or family)'},
-    { value: 'zip', display: 'Zip Code'},
-    { value: 'lang', display: 'Language'},
-    { value: 'hospital', display: 'Hospital'}
-  ]
+
 
   convertToAge(dateValue) {
 
