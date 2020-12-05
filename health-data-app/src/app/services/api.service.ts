@@ -14,6 +14,10 @@ export class ApiService
     getHospitals(): Observable<any> {
         return this.client.get("https://localhost:5001/api/hospitals/")
     }
+
+    getPatientById(refID: string): Observable<any> {      
+        return this.client.get("https://localhost:5001/api/patients/" + refID)
+    }
 }
 
 // Possible approaches:

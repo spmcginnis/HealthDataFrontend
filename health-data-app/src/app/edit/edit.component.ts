@@ -12,13 +12,24 @@ import { DataService } from '../services/data.service';
 })
 export class EditComponent implements OnInit {
 
-  public patientID:string;
+  public refID:string;
 
-  constructor(private _apiService: ApiService, private router: Router, private dataService: DataService) { }
+  patientToEdit: Patients[];
+
+  constructor(private apiService: ApiService, private router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.patientID = this.dataService.getID();
+    this.refID = this.dataService.getID();
     
+    // a test ID for now TODO remove test ID
+    if (!this.refID) {
+      this.refID = "5f86353c5033df945b28b3e9";
+    }
+
+    this.apiService.getPatientById(this.refID).subscribe(
+      data => { this.patientToEdit = data; }
+    );
+
   }
 
 }

@@ -11,14 +11,14 @@ import { Hospitals } from '../dataClasses/hospitals';
 export class HospitalDataComponent implements OnInit {
   hospitalList: Hospitals[];
 
-  public constructor( private _apiService: ApiService ) {}
+  public constructor( private apiService: ApiService ) {}
 
   ngOnInit() {
-    this._apiService.getHospitals().subscribe(
+    this.apiService.getHospitals().subscribe(
       data => { this.hospitalList = data; }
     );
 
-
+      
   }
 
 }

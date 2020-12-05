@@ -29,14 +29,14 @@ export class PatientDataComponent implements OnInit {
   outputList: Patients[]; // for storing the filtered list
   searchField:string; // for the radio filter
 
-  public constructor(private _apiService: ApiService, private router: Router, private dataService: DataService) { }
+  public constructor(private apiService: ApiService, private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
-    this._apiService.getPatients().subscribe(
+    this.apiService.getPatients().subscribe(
       data => { this.patientList = data; this.outputList = data; }
     );
 
-    this._apiService.getHospitals().subscribe(
+    this.apiService.getHospitals().subscribe(
       data => { this.hospitalList = data; }
     );
 
