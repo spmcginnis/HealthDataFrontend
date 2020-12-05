@@ -11,7 +11,10 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-
+  // TODO: refactor class and references from 'edit' to 'view'
+  // TODO: refactor the html to generate the form and data procedurally
+  // TODO: language code and hospital code should be dropdown with keys and values
+  // TODO: process DOB
   public refID:string;
 
   patientToEdit: Patients[];

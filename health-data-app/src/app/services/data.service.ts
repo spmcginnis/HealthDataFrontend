@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class DataService {
-  public patientID:string;
+  public refID:string;
 
   constructor() { }
 
   setID(input:string) {
-    this.patientID = input;
+    this.refID = input;
   }
 
   getID() {
-    return this.patientID;
+    return this.refID;
   }
 }
