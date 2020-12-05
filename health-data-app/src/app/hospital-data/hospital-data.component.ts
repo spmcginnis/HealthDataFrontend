@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { apiService } from '../services/api.service';
+import { ApiService } from '../services/api.service';
 import { Hospitals } from '../dataClasses/hospitals';
 
 @Component({
@@ -11,7 +11,7 @@ import { Hospitals } from '../dataClasses/hospitals';
 export class HospitalDataComponent implements OnInit {
   hospitalList: Hospitals[];
 
-  public constructor( private _apiService: apiService ) {}
+  public constructor( private _apiService: ApiService ) {}
 
   ngOnInit() {
     this._apiService.getHospitals().subscribe(

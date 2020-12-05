@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Hospitals } from '../dataClasses/hospitals';
 import { Patients } from '../dataClasses/patients';
-import { apiService } from '../services/api.service';
+import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-patient-data',
@@ -27,7 +29,7 @@ export class PatientDataComponent implements OnInit {
   outputList: Patients[]; // for storing the filtered list
   searchField:string; // for the radio filter
 
-  public constructor(private _apiService: apiService) { }
+  public constructor(private _apiService: ApiService, private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
     this._apiService.getPatients().subscribe(
@@ -42,9 +44,20 @@ export class PatientDataComponent implements OnInit {
     this.resetForm();
   }
 
+  // Method to pass data to the edit component and load the edit view.
+  public processEditButton(input:string, id:string) {
+    // Get the id of the selected entry and pass it to the edit component.
+
+    this.dataService.setID(id);
+
+    console.log(input, " with ID: ", this.dataService.patientID);
+    
+    this.router.navigate(['/edit'])
+
+
+  }
+
   // Method to process the form information
-  // This happens when the submit button is pressed
-  // It needs to drive the filtering of the table.
   public processForm(value, isValid: boolean) {
     this.resetData();
 
@@ -91,7 +104,7 @@ export class PatientDataComponent implements OnInit {
     this.textInput = '';
     this.searchField = this.radios[0].value;
   }
-  
+
   public resetData() {
     this.outputList = this.patientList;
   }

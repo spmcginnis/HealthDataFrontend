@@ -22,7 +22,7 @@
         <td>{{ languageFromCode(patient.languageCode) }}</td>
         <td>{{ hospitalNameFromCode(patient.hospitalCode)}}</td>
         <td class="button-container">
-          <button class="btn btn-outline-info btn-sm">Edit</button>
+          <button class="btn btn-outline-info btn-sm" (click)="processEditButton('clicked', patient.id)">Edit</button>
         </td>
       </tr>
     </tbody>
