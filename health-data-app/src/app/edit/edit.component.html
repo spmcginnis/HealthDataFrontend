@@ -2,17 +2,16 @@
 
 <form> 
     <div>
-        TODO: Reorder the underlying data fields<br>
-        <div class="form-group row" *ngFor="let child of patientToEdit | keyvalue">
-            <label class="col-sm-2 col-form-label" for="">{{child.key}}</label>
-            <ng-template [ngIf]="child.key=='id'">
+        <div class="form-group row" *ngFor="let array of sortData()">
+            <label class="col-sm-2 col-form-label" for="">{{array[0]}}</label>
+            <ng-template [ngIf]="array[1]=='id'">
                 <div class="col-sm-5">
-                    <input class="form-control-plaintext" type="text" name="" placeholder="{{child.value}}" readonly>
+                    <input class="form-control-plaintext" type="text" name="" placeholder="{{array[2]}}" readonly>
                 </div>
             </ng-template>
-            <ng-template [ngIf]="child.key!='id'">
+            <ng-template [ngIf]="array[1]!='id'">
                 <div class="col-sm-5">
-                    <input class="form-control" type="text" name="" placeholder="{{child.value}}">
+                    <input class="form-control" type="text" name="" placeholder="{{array[2]}}">
                 </div>
             </ng-template>
         </div>
