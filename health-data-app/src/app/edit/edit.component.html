@@ -1,34 +1,86 @@
 <app-header></app-header>
 
-<form> 
-    <div>
-        TODO: Reorder the underlying data fields<br>
-        <div class="form-group row" *ngFor="let child of patientToEdit | keyvalue">
-            <label class="col-sm-2 col-form-label" for="">{{child.key}}</label>
-            <ng-template [ngIf]="child.key=='id'">
-                <div class="col-sm-5">
-                    <input class="form-control-plaintext" type="text" name="" placeholder="{{child.value}}" readonly>
-                </div>
-            </ng-template>
-            <ng-template [ngIf]="child.key!='id'">
-                <div class="col-sm-5">
-                    <input class="form-control" type="text" name="" placeholder="{{child.value}}">
-                </div>
-            </ng-template>
+
+
+<div>
+    <form>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="">ID</label>
+            <div class="col-sm-5">
+                <input class="form-control-plaintext" type="text" name="" placeholder="{{patientToEdit?.id}}" readonly>
+            </div>
         </div>
-    </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="">Given Name</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.givenName}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="">Family Name</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.familyName}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="">Street</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.street}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="">City</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.city}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="">State</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.state}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="">Zip Code</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.zip}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="">Date of Birth</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.dob}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="">Gender Code</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.gender}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="">Language Code</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.languageCode}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="">Hospital Code</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.hospitalCode}}">
+            </div>
+        </div>
 
-    <div class="form-group row">
-        <button class="col-sm-2 btn btn-sm btn-info" type="submit" (click)="returnToList()">Return to Patient List</button>
-        <div class="col-sm-1"></div>
-        <button class="col-sm-2 btn btn-sm btn-info" type="submit">Reset Form</button>
-        <div class="col-sm-1"></div>
-        <button class="col-sm-2 btn btn-sm btn-primary" type="submit">Save Changes</button>
-        <div class="col-sm-1"></div>
-        <button class="col-sm-2 btn btn-sm btn-danger" type="submit">Delete Entry</button>
-    </div>
-</form>
-
+        <div class="form-group row">
+            
+            <button class="col-sm-2 btn btn-info" type="submit" >Submit Changes</button>
+            <div class="col-sm-1"></div>
+            <button class="col-sm-2 btn btn-info" type="submit">Reset Data</button>
+            <div class="col-sm-1"></div>
+            <button class="col-sm-2 btn btn-danger" type="submit">Delete Entry</button>
+        </div>
+    </form>
+</div>
 <div>
     
 

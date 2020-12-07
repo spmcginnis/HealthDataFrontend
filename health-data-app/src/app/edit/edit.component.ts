@@ -17,40 +17,22 @@ export class EditComponent implements OnInit {
   // TODO: process DOB
   public refID:string;
 
-  patientToEdit: Patients;
+  patientToEdit: Patients[];
 
   constructor(private apiService: ApiService, private router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
-    if (!this.dataService.getID() && !this.refID) {
-      this.returnToList();
-    }
+    this.refID = this.dataService.getID();
     
-    if (this.dataService.getID() && !this.refID) {
-      this.refID = this.dataService.getID();
+    // a test ID for now TODO remove test ID
+    if (!this.refID) {
+      this.refID = "5f86353c5033df945b28b3e9";
     }
-    
-    if (this.refID) {
-      this.apiService.getPatientById(this.refID).subscribe(
-        data => { this.patientToEdit = data; }
-      );
-    }
+
+    this.apiService.getPatientById(this.refID).subscribe(
+      data => { this.patientToEdit = data; }
+    );
 
   }
 
-  public resetForm() {
-    
-    if (this.refID) {
-      console.log(this.refID);
-      console.log(this.patientToEdit);
-      this.apiService.getPatientById(this.refID).subscribe(
-        data => { this.patientToEdit = data; }
-      );
-    }
-  }
-
-
-  public returnToList() {
-    this.router.navigate(['/patientList'])
-  }
 }
