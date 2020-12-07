@@ -38,26 +38,7 @@ export class EditComponent implements OnInit {
 
   }
 
-  // Sorts the data for proper ordering of form regardless of order in the source
-  public sortData(): Array<any> {
-    let dataList:Array<any> = [];
-    dataList.push(["ID","id",this.patientToEdit?.id]);
-    dataList.push(["Given Name", "givenName", this.patientToEdit?.givenName]);
-    dataList.push(["Family Name","familyName",this.patientToEdit?.familyName]);
-    dataList.push(["Street","street",this.patientToEdit?.street]);
-    dataList.push(["City","city",this.patientToEdit?.city]);
-    dataList.push(["State","state",this.patientToEdit?.state]);
-    dataList.push(["Zip Code","zip",this.patientToEdit?.zip]);
-    dataList.push(["Date of Birth","dob",this.patientToEdit?.dob]);
-    dataList.push(["Gender Code","gender",this.patientToEdit?.gender]);
-    dataList.push(["Language Code","languageCode",this.patientToEdit?.languageCode]);
-    dataList.push(["Hospital Code", "hospitalCode", this.patientToEdit?.hospitalCode]);
-    
-    return dataList
-  }
-
-
-  public resetForm() { // not working at the moment
+  public resetForm() {
     
     if (this.refID) {
       console.log(this.refID);
@@ -67,6 +48,7 @@ export class EditComponent implements OnInit {
       );
     }
   }
+
 
   public returnToList() {
     this.router.navigate(['/patientList'])
