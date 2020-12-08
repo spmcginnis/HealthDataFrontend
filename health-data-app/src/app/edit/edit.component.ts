@@ -85,14 +85,14 @@ export class EditComponent implements OnInit {
     this.patientToEdit.hospitalCode = this.storeChange(form.value.hospitalCode, this.patientToEdit.hospitalCode);
   }
 
+  // checks to see if there is a difference between the form value and the component value
   private isValueChanged(formValue:string, storedValue:string): boolean {
     return (formValue && formValue != storedValue)
   }
   
+  // First check to see if there is a change then return a value
   private storeChange(formValue:any, storedValue:any): any {
     if (this.isValueChanged(formValue, storedValue)) {
-      console.log("Change detected")
-      formValue;
       console.log("Change stored, new value: ", formValue)
       return formValue;
     } else {
