@@ -3,88 +3,90 @@
 
 
 <div>
-    <form>
+    <form #patientEditForm="ngForm">
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="">ID</label>
+            <label class="col-sm-2 col-form-label" for="id">ID</label>
             <div class="col-sm-5">
-                <input class="form-control-plaintext" type="text" name="" placeholder="{{patientToEdit?.id}}" readonly>
+                <input class="form-control-plaintext" type="text" id="id" name="id" [(ngModel)]="id" value="{{patientToEdit?.id}}" readonly>
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="">Given Name</label>
+            <label class="col-sm-2 col-form-label" for="givenName">Given Name</label>
             <div class="col-sm-5">
-                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.givenName}}">
+                <input class="form-control" type="text" id="givenName" name="givenName" [(ngModel)]="givenName" value="{{patientToEdit?.givenName}}">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="">Family Name</label>
+            <label class="col-sm-2 col-form-label" for="familyName">Family Name</label>
             <div class="col-sm-5">
-                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.familyName}}">
+                <input class="form-control" type="text" id="familyName" name="familyName" [(ngModel)]="familyName" value="{{patientToEdit?.familyName}}">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="">Street</label>
+            <label class="col-sm-2 col-form-label" for="street">Street</label>
             <div class="col-sm-5">
-                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.street}}">
+                <input class="form-control" type="text" id="street" name="street" [(ngModel)]="street" value="{{patientToEdit?.street}}">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="">City</label>
+            <label class="col-sm-2 col-form-label" for="city">City</label>
             <div class="col-sm-5">
-                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.city}}">
+                <input class="form-control" type="text" id="city" name="city" [(ngModel)]="city" value="{{patientToEdit?.city}}">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="">State</label>
+            <label class="col-sm-2 col-form-label" for="state">State</label>
             <div class="col-sm-5">
-                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.state}}">
+                <input class="form-control" type="text" id="state" name="state" [(ngModel)]="state" value="{{patientToEdit?.state}}">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="">Zip Code</label>
+            <label class="col-sm-2 col-form-label" for="zip">Zip Code</label>
             <div class="col-sm-5">
-                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.zip}}">
+                <input class="form-control" type="text" id="zip" name="zip" [(ngModel)]="zip" value="{{patientToEdit?.zip}}">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="">Date of Birth</label>
+            <label class="col-sm-2 col-form-label" for="dob">Date of Birth</label>
             <div class="col-sm-5">
-                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.dob}}">
+                <input class="form-control" type="text" id="dob" name="dob" [(ngModel)]="dob" value="{{patientToEdit?.dob}}">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="">Gender Code</label>
+            <label class="col-sm-2 col-form-label" for="gender">Gender Code</label>
             <div class="col-sm-5">
-                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.gender}}">
+                <input class="form-control" type="text" id="gender" name="gender" [(ngModel)]="gender" value="{{patientToEdit?.gender}}">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="">Language Code</label>
+            <label class="col-sm-2 col-form-label" for="languageCode">Language Code</label>
             <div class="col-sm-5">
-                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.languageCode}}">
+                <input class="form-control" type="text" id="languageCode" name="languageCode" [(ngModel)]="languageCode" value="{{patientToEdit?.languageCode}}">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label" for="">Hospital Code</label>
+            <label class="col-sm-2 col-form-label" for="hospitalCode">Hospital Code</label>
             <div class="col-sm-5">
-                <input class="form-control" type="text" name="" placeholder="{{patientToEdit?.hospitalCode}}">
+                <input class="form-control" type="text" id="hospitalCode" name="hospitalCode" [(ngModel)]="hospitalCode" value="{{patientToEdit?.hospitalCode}}">
             </div>
         </div>
+        
+        <div>Testing the ngModel directive: {{patientEditForm.value | json}}</div>
 
         <div class="form-group row">
-            
-            <button class="col-sm-2 btn btn-info" type="submit" >Submit Changes</button>
+            <button class="col-sm-2 btn btn-sm btn-info" (click)="returnToList()">Return to Patient List</button>
             <div class="col-sm-1"></div>
-            <button class="col-sm-2 btn btn-info" type="submit">Reset Data</button>
+            <button class="col-sm-2 btn btn-sm btn-info" type="submit" >Submit Changes</button>
             <div class="col-sm-1"></div>
-            <button class="col-sm-2 btn btn-danger" type="submit">Delete Entry</button>
+            <button class="col-sm-2 btn btn-sm btn-info" (click)="_reset(patientEditForm)">Reset Data</button>
+            <div class="col-sm-1"></div>
+            <button class="col-sm-2 btn btn-sm btn-danger" >Delete Entry</button>
         </div>
     </form>
 </div>
 <div>
-    
-
     TODO: 
     It will allow users to edit the individual fields and update the DB and to delete the entry.
-    It might also be the place where they can add a new entry (??). 
+    It might also be the place where they can add a new entry (??).
+    Add validation
 </div>
