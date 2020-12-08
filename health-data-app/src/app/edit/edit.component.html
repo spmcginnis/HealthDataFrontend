@@ -3,7 +3,7 @@
 
 
 <div>
-    <form #patientEditForm="ngForm" (ngSubmit)="saveForm(patientEditForm)" (keydown.enter)="$event.preventDefault()">
+    <form #patientEditForm="ngForm" (ngSubmit)="saveForm(patientEditForm)" (keydown.enter)="$event.preventDefault()" (keydown.shift.enter)="$event.preventDefault()">
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="id">ID</label>
             <div class="col-sm-5">
