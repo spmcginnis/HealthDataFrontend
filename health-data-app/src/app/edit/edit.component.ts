@@ -48,10 +48,10 @@ export class EditComponent implements OnInit {
     localStorage.removeItem('id');
     localStorage.setItem('id', this.refID);
     console.log(localStorage.getItem('id'));
+
   }
 
-  public _reset(form: NgForm) {
-
+  public resetData(form: NgForm): void {
     form.reset(
       {id: this.patientToEdit.id,
       givenName: this.patientToEdit.givenName,
@@ -65,9 +65,6 @@ export class EditComponent implements OnInit {
       languageCode: this.patientToEdit.languageCode,
       hospitalCode: this.patientToEdit.hospitalCode}
     );
-
-    // TODO repopulate fields
-
   }
 
 
@@ -75,5 +72,32 @@ export class EditComponent implements OnInit {
     this.router.navigate(['/patientList'])
   }
 
+  public saveForm(form: NgForm): void {
+    this.patientToEdit.givenName = this.storeChange(form.value.givenName, this.patientToEdit.givenName);
+    this.patientToEdit.familyName = this.storeChange(form.value.familyName, this.patientToEdit.familyName);
+    this.patientToEdit.street = this.storeChange(form.value.street, this.patientToEdit.street);
+    this.patientToEdit.city = this.storeChange(form.value.city, this.patientToEdit.city);
+    this.patientToEdit.state = this.storeChange(form.value.state, this.patientToEdit.state);
+    this.patientToEdit.zip = this.storeChange(form.value.zip, this.patientToEdit.zip);
+    this.patientToEdit.dob = this.storeChange(form.value.dob, this.patientToEdit.dob);
+    this.patientToEdit.gender = this.storeChange(form.value.gender, this.patientToEdit.gender);
+    this.patientToEdit.languageCode = this.storeChange(form.value.languageCode, this.patientToEdit.languageCode);
+    this.patientToEdit.hospitalCode = this.storeChange(form.value.hospitalCode, this.patientToEdit.hospitalCode);
+  }
+
+  private isValueChanged(formValue:string, storedValue:string): boolean {
+    return (formValue && formValue != storedValue)
+  }
+  
+  private storeChange(formValue:any, storedValue:any): any {
+    if (this.isValueChanged(formValue, storedValue)) {
+      console.log("Change detected")
+      formValue;
+      console.log("Change stored, new value: ", formValue)
+      return formValue;
+    } else {
+      return storedValue;
+    }
+  }
 
 }

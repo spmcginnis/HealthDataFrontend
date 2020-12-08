@@ -3,7 +3,7 @@
 
 
 <div>
-    <form #patientEditForm="ngForm">
+    <form #patientEditForm="ngForm" (ngSubmit)="saveForm(patientEditForm)" (keydown.enter)="$event.preventDefault()">
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="id">ID</label>
             <div class="col-sm-5">
@@ -71,14 +71,14 @@
             </div>
         </div>
         
-        <div>Testing the ngModel directive: {{patientEditForm.value | json}}</div>
+        <div>Angular form model: {{patientEditForm.value | json}}</div>
 
         <div class="form-group row">
             <button class="col-sm-2 btn btn-sm btn-info" (click)="returnToList()">Return to Patient List</button>
             <div class="col-sm-1"></div>
-            <button class="col-sm-2 btn btn-sm btn-info" type="submit" >Submit Changes</button>
+            <button class="col-sm-2 btn btn-sm btn-info" type="submit">Submit Changes</button>
             <div class="col-sm-1"></div>
-            <button class="col-sm-2 btn btn-sm btn-info" (click)="_reset(patientEditForm)">Reset Data</button>
+            <button class="col-sm-2 btn btn-sm btn-info" (click)="resetData(patientEditForm)">Reset Data</button>
             <div class="col-sm-1"></div>
             <button class="col-sm-2 btn btn-sm btn-danger" >Delete Entry</button>
         </div>
