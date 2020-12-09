@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Patients } from '../dataClasses/patients';
 
 @Injectable()
 export class ApiService
 {
+    // TODO refactor the URL to point to a single value.
+    // TODO refactor the observables to use strict typing.
     constructor (private client: HttpClient) {}
 
     getPatients(): Observable<any> {
@@ -22,6 +25,12 @@ export class ApiService
 
     getPatientById(refID: string): Observable<any> {      
         return this.client.get("https://localhost:5001/api/patients/" + refID)
+            .pipe(catchError(this.handleError)
+            );
+    }
+
+    updatePatientById(patient: Patients) {
+        return this.client.put<Patients>("https://localhost:5001/api/patients/" + patient.id, patient)
             .pipe(catchError(this.handleError)
             );
     }

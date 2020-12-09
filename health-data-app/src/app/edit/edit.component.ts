@@ -83,6 +83,8 @@ export class EditComponent implements OnInit {
     this.patientToEdit.gender = this.storeChange(form.value.gender, this.patientToEdit.gender);
     this.patientToEdit.languageCode = this.storeChange(form.value.languageCode, this.patientToEdit.languageCode);
     this.patientToEdit.hospitalCode = this.storeChange(form.value.hospitalCode, this.patientToEdit.hospitalCode);
+
+    this.apiService.updatePatientById(this.patientToEdit).subscribe();
   }
 
   // checks to see if there is a difference between the form value and the component value
