@@ -10,7 +10,9 @@
         <th>Age</th>
         <th>Primary Language</th>
         <th>Primary Hospital</th>
-        <th></th>
+        <th>
+          <button class="btn btn-outline-info btn-sm">Add New Patient</button>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -22,7 +24,7 @@
         <td>{{ languageFromCode(patient.languageCode) }}</td>
         <td>{{ hospitalNameFromCode(patient.hospitalCode)}}</td>
         <td class="button-container">
-          <button class="btn btn-outline-info btn-sm" (click)="processEditButton('clicked', patient.id)">Edit</button>
+          <button class="btn btn-outline-info btn-sm" (click)="processEditButton(patient.id)">Edit</button>
         </td>
       </tr>
     </tbody>

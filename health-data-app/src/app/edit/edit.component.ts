@@ -24,30 +24,31 @@ export class EditComponent implements OnInit {
   constructor(private apiService: ApiService, private router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
-    
+    // Uses localStorage to ensure a browser reset maintains the data. If the local storage value is undefined, then it sends the user back to the patient list.
+    // This happens when the browser is reset or the page URL is used instead of the edit button.
     if (!this.dataService.getID() && !this.refID) {
       if (localStorage.getItem('id')!="undefined") {
         this.refID = localStorage.getItem('id');
       } else {
         this.returnToList();
       }
-      
     }
 
+    // Get the ID from the data service if there is no refID. This happens when the edit button is clicked in patient-data.component
     if (this.dataService.getID() && !this.refID) {
       this.refID = this.dataService.getID();
     }
     
+    // Get the data from the API
     if (this.refID) {
       this.apiService.getPatientById(this.refID).subscribe(
         data => { this.patientToEdit = data; }
       );
-
-
     }
+
+    // Clear and reset the local storage based on the current refID
     localStorage.removeItem('id');
-    localStorage.setItem('id', this.refID);
-    console.log(localStorage.getItem('id'));
+    localStorage.setItem('id', this.refID)
 
   }
 
