@@ -1,4 +1,4 @@
-export class Hospitals
+export interface Hospitals
 {
     // id and several data fields not used
     hospitalCode:string;

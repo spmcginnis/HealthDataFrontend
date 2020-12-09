@@ -1,5 +1,5 @@
-export class Patients
-{
+export interface Patients {
+    // On interface being used here, see https://angular.io/guide/http#requesting-a-typed-response
     // Properties correspond to data fields in the API.
     id:string;
     givenName:string;
@@ -11,10 +11,7 @@ export class Patients
     dob:string;
     gender:string;
     languageCode:string;
-    hospitalCode:string;
-
-
-
-
-    
+    hospitalCode:string;    
 }
+
+// TODO Recheck types for data validation step
