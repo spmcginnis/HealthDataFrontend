@@ -1,0 +1,71 @@
+<app-header></app-header>
+
+<div>
+    <h3>Add a new patient to the database</h3>
+    <form #patientAddForm="ngForm" (keydown.enter)="$event.preventDefault()" (keydown.shift.enter)="$event.preventDefault()">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="familyName">Family Name</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" id="familyName" name="familyName" [(ngModel)]="familyName" value="{{patientToEdit?.familyName}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="street">Street</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" id="street" name="street" [(ngModel)]="street" value="{{patientToEdit?.street}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="city">City</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" id="city" name="city" [(ngModel)]="city" value="{{patientToEdit?.city}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="state">State</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" id="state" name="state" [(ngModel)]="state" value="{{patientToEdit?.state}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="zip">Zip Code</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" id="zip" name="zip" [(ngModel)]="zip" value="{{patientToEdit?.zip}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="dob">Date of Birth</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" id="dob" name="dob" [(ngModel)]="dob" value="{{patientToEdit?.dob}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="gender">Gender Code</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" id="gender" name="gender" [(ngModel)]="gender" value="{{patientToEdit?.gender}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="languageCode">Language Code</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" id="languageCode" name="languageCode" [(ngModel)]="languageCode" value="{{patientToEdit?.languageCode}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="hospitalCode">Hospital Code</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" id="hospitalCode" name="hospitalCode" [(ngModel)]="hospitalCode" value="{{patientToEdit?.hospitalCode}}">
+            </div>
+        </div>
+        
+        <div>(Testing) Angular form model: {{patientEditForm.value | json}}</div>
+
+        <div class="form-group row">
+            <button class="col-sm-2 btn btn-sm btn-info" (click)="returnToList()" type="button">Return to Patient List</button>
+            <div class="col-sm-1"></div>
+            <button class="col-sm-2 btn btn-sm btn-info" type="button" (click)="clearForm(patientAddForm)">Clear Form</button>
+            <div class="col-sm-1"></div>
+            <button class="col-sm-2 btn btn-sm btn-info" type="submit">Add Patient</button>
+        </div>
+    </form>
+</div>

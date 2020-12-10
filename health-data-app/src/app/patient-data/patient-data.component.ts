@@ -45,9 +45,13 @@ export class PatientDataComponent implements OnInit {
   }
 
   // Method to pass data to the edit component and load the edit view.
-  public processEditButton(id:string) {
+  public processEditButton(id:string): void {
     this.dataService.setID(id);
     this.router.navigate(['/edit'])
+  }
+
+  public processAddButton(): void {
+    this.router.navigate(['/add'])
   }
 
   // Method to process the form information

@@ -12,6 +12,7 @@ import { MapComponent } from './map/map.component';
 import { FormsModule } from '@angular/forms';
 import { EditComponent } from './edit/edit.component';
 import { DataService } from './services/data.service';
+import { AddComponent } from './add/add.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'hospitalList', component: HospitalDataComponent},
   {path: 'map', component: MapComponent},
   {path: 'edit', component: EditComponent},
+  {path: 'add', component: AddComponent},
   {path: '**', redirectTo: '/home'}
 ];
 
@@ -32,7 +34,8 @@ const routes: Routes = [
     HomeComponent,
     MapComponent,
     MapComponent,
-    EditComponent
+    EditComponent,
+    AddComponent
   ],
   imports: [
     BrowserModule,
