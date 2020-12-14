@@ -35,6 +35,12 @@ export class ApiService
             );
     }
 
+    postNewPatient(patient: Patients) {
+        return this.client.post<Patients>("https://localhost:5001/api/patients", patient)
+            .pipe(catchError(this.handleError)
+            );
+    }
+
     private handleError(response: HttpErrorResponse) {
         if (response.error instanceof ErrorEvent) {
             // Handles a client or network error

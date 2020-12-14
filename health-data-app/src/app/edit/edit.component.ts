@@ -13,6 +13,20 @@ import { NgForm } from '@angular/forms';
 })
 
 export class EditComponent implements OnInit {
+  // ngModel properties
+  id;
+  givenName;
+  familyName;
+  street;
+  city;
+  state;
+  zip;
+  dob;
+  gender;
+  languageCode;
+  hospitalCode;
+
+  
   // TODO: refactor class and references from 'edit' to 'view'
   // TODO: refactor the html to generate the form and data procedurally
   // TODO: language code and hospital code should be dropdown with keys and values

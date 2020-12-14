@@ -11,6 +11,20 @@ import { Patients } from '../dataClasses/patients';
 })
 
 export class AddComponent implements OnInit {
+  // ngModel properties
+  id;
+  givenName;
+  familyName;
+  street;
+  city;
+  state;
+  zip;
+  dob;
+  gender;
+  languageCode;
+  hospitalCode;
+
+  // patient object
   patientToAdd: Patients;
   public errorMessage;
 
@@ -38,10 +52,10 @@ export class AddComponent implements OnInit {
     }
 
     if (undefinedFields > 0) {
-      this.errorMessage = "Form not submitted. Please complete all fields.";
-      console.log(this.patientToAdd);
-
+      this.displayError("Form not submitted. All fields are required.", 4000);
+      
     } else {
+      this.patientToAdd.id = '';
       this.patientToAdd.givenName = form.value.givenName;
       this.patientToAdd.familyName = form.value.familyName;
       this.patientToAdd.street = form.value.street;
@@ -53,13 +67,9 @@ export class AddComponent implements OnInit {
       this.patientToAdd.languageCode = form.value.languageCode;
       this.patientToAdd.hospitalCode = form.value.hospitalCode;
 
-      console.log(this.patientToAdd);
-
-      // call put to db
+      // call post to db
+      this.api.postNewPatient(this.patientToAdd).subscribe();
     }
-
-
-
   }
 
   public returnToList() {
@@ -68,6 +78,16 @@ export class AddComponent implements OnInit {
 
   public clearForm(form: NgForm) {
     form.reset();
+    this.errorMessage = "";
+  }
+
+  private delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  private async displayError(message, ms){
+    this.errorMessage = message;
+    await this.delay(ms);
     this.errorMessage = "";
   }
 }
