@@ -35,8 +35,9 @@ export class ApiService
             );
     }
 
-    postNewPatient(patient: Patients) {
-        return this.client.post<Patients>("https://localhost:5001/api/patients", patient)
+    postNewPatient(patient) {
+        let options = {headers: {"Content-Type": "application/json"}}
+        return this.client.post("https://localhost:5001/api/patients/", JSON.parse(JSON.stringify(patient)))
             .pipe(catchError(this.handleError)
             );
     }

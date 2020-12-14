@@ -12,14 +12,13 @@ import { Patients } from '../dataClasses/patients';
 
 export class AddComponent implements OnInit {
   // ngModel properties
-  id;
   givenName;
   familyName;
   street;
   city;
   state;
-  zip;
-  dob;
+  zip:number;
+  dob:number;
   gender;
   languageCode;
   hospitalCode;
@@ -55,14 +54,13 @@ export class AddComponent implements OnInit {
       this.displayError("Form not submitted. All fields are required.", 4000);
       
     } else {
-      this.patientToAdd.id = '';
       this.patientToAdd.givenName = form.value.givenName;
       this.patientToAdd.familyName = form.value.familyName;
       this.patientToAdd.street = form.value.street;
       this.patientToAdd.city = form.value.city;
       this.patientToAdd.state = form.value.state;
-      this.patientToAdd.zip = form.value.zip;
-      this.patientToAdd.dob = form.value.dob;
+      this.patientToAdd.zip = Number(form.value.zip);
+      this.patientToAdd.dob = Number(form.value.dob);
       this.patientToAdd.gender = form.value.gender;
       this.patientToAdd.languageCode = form.value.languageCode;
       this.patientToAdd.hospitalCode = form.value.hospitalCode;

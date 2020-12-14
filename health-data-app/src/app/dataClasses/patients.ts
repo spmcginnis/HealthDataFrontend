@@ -8,7 +8,7 @@ export interface Patients {
     city:string;
     state:string;
     zip:number;
-    dob:string;
+    dob:number;
     gender:string;
     languageCode:string;
     hospitalCode:string;    
