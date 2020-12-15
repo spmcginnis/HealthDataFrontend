@@ -3,6 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Patients } from '../dataClasses/patients';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ApiService
@@ -11,14 +12,18 @@ export class ApiService
     // TODO refactor the observables to use strict typing.
     constructor (private client: HttpClient) {}
 
+    private buildURL(string): string {
+        return environment.apiURL + string
+    }
+
     getPatients(): Observable<any> {
-        return this.client.get("https://localhost:5001/api/patients/")
+        return this.client.get(this.buildURL("api/patients"))
             .pipe(catchError(this.handleError)
             );
     }
 
     getHospitals(): Observable<any> {
-        return this.client.get("https://localhost:5001/api/hospitals/")
+        return this.client.get(this.buildURL("api/hospitals"))
             .pipe(catchError(this.handleError)
             );
     }

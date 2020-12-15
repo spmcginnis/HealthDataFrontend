@@ -20,9 +20,16 @@ ng build --prod --base-href "https://spmcginnis.github.io/HealthDataFrontend/" -
 
 pushd dist/health-data-app
 
+mkdir -p assets/api
+curl -k https://localhost:5001/api/patients -o assets/api/patients
+curl -k https://localhost:5001/api/hospitals -o assets/api/hospitals
+
 # Dealing with github angular routing mismatch
 # See https://blog.bitsrc.io/deploy-your-angular-project-to-github-pages-7cbacb96f35b
 cp index.html 404.html
+
+
+
 
 # git initialization
 git init
