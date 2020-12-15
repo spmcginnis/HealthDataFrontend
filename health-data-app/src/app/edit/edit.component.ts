@@ -117,4 +117,12 @@ export class EditComponent implements OnInit {
     }
   }
 
+  public deletePatient(form: NgForm) {
+    this.resetData(form);
+    console.log(form.value.id)
+    this.apiService.deletePatientById(form.value.id).subscribe();
+    this.returnToList();
+    // TODO add success message
+  }
+
 }

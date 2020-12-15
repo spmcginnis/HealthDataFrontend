@@ -42,6 +42,12 @@ export class ApiService
             );
     }
 
+    deletePatientById(refID: string) {
+        return this.client.delete("https://localhost:5001/api/patients/" + refID)
+            .pipe(catchError(this.handleError)
+            );
+    }
+
     private handleError(response: HttpErrorResponse) {
         if (response.error instanceof ErrorEvent) {
             // Handles a client or network error
