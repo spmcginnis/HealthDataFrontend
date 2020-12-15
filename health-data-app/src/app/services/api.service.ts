@@ -36,10 +36,10 @@ export class ApiService
     }
 
     postNewPatient(patient) {
-        let options = {headers: {"Content-Type": "application/json"}}
-        return this.client.post("https://localhost:5001/api/patients/", JSON.parse(JSON.stringify(patient)))
+        return this.client.post("https://localhost:5001/api/patients/", patient)
             .pipe(catchError(this.handleError)
             );
+    
     }
 
     deletePatientById(refID: string) {
