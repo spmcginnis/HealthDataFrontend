@@ -64,6 +64,7 @@ export class EditComponent implements OnInit {
     localStorage.removeItem('id');
     localStorage.setItem('id', this.refID)
 
+    //TODO check the environment and handle appropriately
   }
 
   public resetData(form: NgForm): void {

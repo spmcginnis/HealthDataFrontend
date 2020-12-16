@@ -8,12 +8,11 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class ApiService
 {
-    // TODO refactor the URL to point to a single value.
     // TODO refactor the observables to use strict typing.
     constructor (private client: HttpClient) {}
 
-    private buildURL(string): string {
-        return environment.apiURL + string
+    private buildURL(path:string, refID:string = ''): string {
+        return environment.apiURL + path + refID
     }
 
     getPatients(): Observable<any> {
@@ -29,26 +28,27 @@ export class ApiService
     }
 
     getPatientById(refID: string): Observable<any> {      
-        return this.client.get("https://localhost:5001/api/patients/" + refID)
+        return this.client.get(this.buildURL("api/patients/", refID))
             .pipe(catchError(this.handleError)
             );
+        // TODO handle the github pages implementation environment
     }
 
     updatePatientById(patient: Patients) {
-        return this.client.put<Patients>("https://localhost:5001/api/patients/" + patient.id, patient)
+        return this.client.put<Patients>(this.buildURL("api/patients/", patient.id), patient)
             .pipe(catchError(this.handleError)
             );
     }
 
     postNewPatient(patient) {
-        return this.client.post("https://localhost:5001/api/patients/", patient)
+        return this.client.post(this.buildURL("api/patients"), patient)
             .pipe(catchError(this.handleError)
             );
     
     }
 
     deletePatientById(refID: string) {
-        return this.client.delete("https://localhost:5001/api/patients/" + refID)
+        return this.client.delete(this.buildURL("api/patients/", refID))
             .pipe(catchError(this.handleError)
             );
     }
