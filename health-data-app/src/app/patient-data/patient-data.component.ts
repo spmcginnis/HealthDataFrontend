@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Hospitals } from '../dataClasses/hospitals';
 import { Patients } from '../dataClasses/patients';
 import { ApiService } from '../services/api.service';
@@ -13,7 +13,7 @@ import { DataService } from '../services/data.service';
 
 export class PatientDataComponent implements OnInit {
   todayDate = new Date(Date.parse(Date()))
-
+  message:string;
   // Data Lists
   patientList: Patients[];
   hospitalList: Hospitals[];
@@ -31,7 +31,12 @@ export class PatientDataComponent implements OnInit {
 
   public constructor(private apiService: ApiService, private router: Router, private dataService: DataService) { }
 
+  // Angular calls the ngOnChanges() method of a component or directive whenever it detects changes to the input properties.
+ 
+
   ngOnInit() {
+    this.setMessageWithTimer(this.dataService.getMessage(), 4000);
+
     this.apiService.getPatients().subscribe(
       data => { this.patientList = data; this.outputList = data; }
     );
@@ -106,8 +111,6 @@ export class PatientDataComponent implements OnInit {
     this.outputList = this.patientList;
   }
 
-
-
   convertToAge(dateValue) {
 
     let birthYYYY:number = +String(dateValue).slice(0,4);
@@ -150,6 +153,17 @@ export class PatientDataComponent implements OnInit {
       } 
     }
   }
+
+  private delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  private async setMessageWithTimer(input:string, ms:number){
+    this.message = input;
+    await this.delay(ms);
+    this.message = "";
+  }
+
 
 
 }

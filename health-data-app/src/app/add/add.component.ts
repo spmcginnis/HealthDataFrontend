@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Patients } from '../dataClasses/patients';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-add',
@@ -27,14 +28,14 @@ export class AddComponent implements OnInit {
   patientToAdd: Patients;
   public errorMessage;
 
-  constructor(private router: Router, private api: ApiService) {}
+  constructor(private router: Router, private api: ApiService, private dataService: DataService) {}
 
   ngOnInit(): void {
     this.patientToAdd = <Patients>{};
   }
 
   public addPatient(form: NgForm) {
-    // TODO check data for validity
+    // TODO check each field for validity. Currently only checks for completion.
     let undefinedFields:number = 0;
     for (const key in form.value) {
       if (Object.prototype.hasOwnProperty.call(form.value, key)) {
@@ -67,11 +68,20 @@ export class AddComponent implements OnInit {
 
       // call post to db
       this.api.postNewPatient(this.patientToAdd).subscribe();
+
+      // send message through data service
+      this.navigateWithMessage("/patientList", "New patient added to DB.")
+      
     }
   }
 
-  public returnToList() {
+  private returnToList() {
     this.router.navigate(['/patientList'])
+  }
+
+  private navigateWithMessage(path:string, input:string) {
+    this.dataService.setMessage(input);
+    this.router.navigate([path]);
   }
 
   public clearForm(form: NgForm) {

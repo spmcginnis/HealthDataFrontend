@@ -26,6 +26,7 @@ export class EditComponent implements OnInit {
   languageCode;
   hospitalCode;
 
+  private editTracker:number;
   
   // TODO: refactor class and references from 'edit' to 'view'
   // TODO: refactor the html to generate the form and data procedurally
@@ -89,6 +90,7 @@ export class EditComponent implements OnInit {
   }
 
   public saveForm(form: NgForm): void {
+    this.editTracker = 0;
     this.patientToEdit.givenName = this.storeChange(form.value.givenName, this.patientToEdit.givenName);
     this.patientToEdit.familyName = this.storeChange(form.value.familyName, this.patientToEdit.familyName);
     this.patientToEdit.street = this.storeChange(form.value.street, this.patientToEdit.street);
@@ -99,8 +101,14 @@ export class EditComponent implements OnInit {
     this.patientToEdit.gender = this.storeChange(form.value.gender, this.patientToEdit.gender);
     this.patientToEdit.languageCode = this.storeChange(form.value.languageCode, this.patientToEdit.languageCode);
     this.patientToEdit.hospitalCode = this.storeChange(form.value.hospitalCode, this.patientToEdit.hospitalCode);
+    
+    if (this.editTracker > 0) {
+      this.apiService.updatePatientById(this.patientToEdit).subscribe();
+      console.log("api call triggered");
+      this.dataService.setMessage(`Changes saved for patient ${this.patientToEdit.id}`)
+      this.returnToList();
+    }
 
-    this.apiService.updatePatientById(this.patientToEdit).subscribe();
   }
 
   // checks to see if there is a difference between the form value and the component value
@@ -112,6 +120,7 @@ export class EditComponent implements OnInit {
   private storeChange(formValue:any, storedValue:any): any {
     if (this.isValueChanged(formValue, storedValue)) {
       console.log("Change stored, new value: ", formValue)
+      this.editTracker += 1;
       return formValue;
     } else {
       return storedValue;
@@ -122,8 +131,8 @@ export class EditComponent implements OnInit {
     this.resetData(form);
     console.log(form.value.id)
     this.apiService.deletePatientById(form.value.id).subscribe();
+    this.dataService.setMessage(`Patient ${form.value.id} deleted.`)
     this.returnToList();
-    // TODO add success message
   }
 
 }
