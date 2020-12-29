@@ -1,5 +1,23 @@
 # HealthDataApp
 
+## TODO
+- Use cached data instead of db when db is not available (for sample)
+- Map functionality
+
+## Completed
+- Loads patient data from api into a patient list view
+- Loads hospital data
+- Reformats language, age, and hospital codes
+- Can edit the data and save changes to db
+- Can add new patients
+- Can delete entries
+- Loads leaflet.js map into map view
+- Automated build script
+- Build script generates data cache
+
+
+# ng info
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
 
 ## Development server
@@ -14,6 +32,3 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
