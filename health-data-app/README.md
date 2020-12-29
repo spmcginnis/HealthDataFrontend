@@ -1,7 +1,7 @@
 # HealthDataApp
 
 ## TODO
-- Use cached data instead of db when db is not available (for sample)
+- Production mode edit view gets data
 - Map functionality
 
 ## Completed
@@ -14,7 +14,8 @@
 - Loads leaflet.js map into map view
 - Automated build script
 - Build script generates data cache
-
+- Use cached data instead of db when db is not available (for sample)
+- Escape CRUD functions with an alert message when in production mode
 
 # ng info
 

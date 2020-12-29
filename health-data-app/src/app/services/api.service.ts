@@ -5,10 +5,12 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Patients } from '../dataClasses/patients';
 import { environment } from 'src/environments/environment';
 
+// https://spmcginnis.github.io/HealthDataFrontend/assets/api/patients
+// https://spmcginnis.github.io/HealthDataFrontend/assets/api/hospitals
+
 @Injectable()
 export class ApiService
 {
-    // TODO refactor the observables to use strict typing.
     constructor (private client: HttpClient) {}
 
     private buildURL(path:string, refID:string = ''): string {

@@ -5,6 +5,8 @@ import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { NgForm } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import { env } from 'process';
 
 @Component({
   selector: 'app-edit',
@@ -25,7 +27,8 @@ export class EditComponent implements OnInit {
   gender;
   languageCode;
   hospitalCode;
-
+  private isProd;
+  errorMessage;
   private editTracker:number;
   
   // TODO: refactor class and references from 'edit' to 'view'
@@ -36,7 +39,9 @@ export class EditComponent implements OnInit {
 
   patientToEdit: Patients;
 
-  constructor(private apiService: ApiService, private router: Router, private dataService: DataService) { }
+  constructor(private apiService: ApiService, private router: Router, private dataService: DataService) {
+    this.isProd = environment.production;
+   }
 
   ngOnInit(): void {
     // Uses localStorage to ensure a browser reset maintains the data. If the local storage value is undefined, then it sends the user back to the patient list.
@@ -90,6 +95,11 @@ export class EditComponent implements OnInit {
   }
 
   public saveForm(form: NgForm): void {
+    if (this.isProd) {
+      this.displayError("Save Changes button disabled for example app.", 4000)
+      return
+    }
+
     this.editTracker = 0;
     this.patientToEdit.givenName = this.storeChange(form.value.givenName, this.patientToEdit.givenName);
     this.patientToEdit.familyName = this.storeChange(form.value.familyName, this.patientToEdit.familyName);
@@ -128,11 +138,26 @@ export class EditComponent implements OnInit {
   }
 
   public deletePatient(form: NgForm) {
+    if (this.isProd) {
+      this.displayError("Delete Entry button disabled for example app.", 4000)
+      return
+    }
+
     this.resetData(form);
     console.log(form.value.id)
     this.apiService.deletePatientById(form.value.id).subscribe();
     this.dataService.setMessage(`Patient ${form.value.id} deleted.`)
     this.returnToList();
+  }
+
+  private async displayError(message, ms){
+    this.errorMessage = message;
+    await this.delay(ms);
+    this.errorMessage = "";
+  }
+
+  private delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
 }

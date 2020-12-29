@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Patients } from '../dataClasses/patients';
 import { DataService } from '../services/data.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add',
@@ -23,18 +24,26 @@ export class AddComponent implements OnInit {
   gender;
   languageCode;
   hospitalCode;
+  isProd;
 
   // patient object
   patientToAdd: Patients;
   public errorMessage;
 
-  constructor(private router: Router, private api: ApiService, private dataService: DataService) {}
+  constructor(private router: Router, private api: ApiService, private dataService: DataService) {
+    this.isProd = environment.production;
+    console.log("isprod? ", this.isProd)
+  }
 
   ngOnInit(): void {
     this.patientToAdd = <Patients>{};
   }
 
   public addPatient(form: NgForm) {
+    if (this.isProd) {
+      this.displayError("Add patient button disabled for example app.", 4000)
+      return
+    }
     // TODO check each field for validity. Currently only checks for completion.
     let undefinedFields:number = 0;
     for (const key in form.value) {
@@ -75,7 +84,7 @@ export class AddComponent implements OnInit {
     }
   }
 
-  private returnToList() {
+  public returnToList() {
     this.router.navigate(['/patientList'])
   }
 
