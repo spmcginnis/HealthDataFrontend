@@ -6,5 +6,6 @@ export const environment = {
   production: false,
   apiURL: 'https://localhost:5001/'
   // For testing the production side
+  // production: true,
   // apiURL: "https://spmcginnis.github.io/HealthDataFrontend/assets/"
 };

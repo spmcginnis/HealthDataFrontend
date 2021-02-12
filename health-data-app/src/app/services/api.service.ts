@@ -30,10 +30,20 @@ export class ApiService
     }
 
     getPatientById(refID: string): Observable<any> {      
-        return this.client.get(this.buildURL("api/patients/", refID))
+        if (environment.production == true)
+        {
+            // Handle the github pages implementation environment // The JSON is parsed in edit.component.ts
+            return this.getPatients(); 
+
+        } else {
+            return this.client.get(this.buildURL("api/patients/", refID))
             .pipe(catchError(this.handleError)
             );
-        // TODO handle the github pages implementation environment
+        }
+
+        
+
+
     }
 
     updatePatientById(patient: Patients) {

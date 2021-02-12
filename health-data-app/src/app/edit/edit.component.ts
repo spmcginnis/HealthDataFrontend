@@ -62,8 +62,23 @@ export class EditComponent implements OnInit {
     // Get the data from the API
     if (this.refID) {
       this.apiService.getPatientById(this.refID).subscribe(
-        data => { this.patientToEdit = data; }
+          data => {
+            // handles the data from the flat file provided in the demo environment (environment.productions = true)
+            if (!environment.production) {this.patientToEdit = data;}
+            else {
+              for (let i in data)
+              {
+                if (data[i].id == this.refID)
+                {
+                  this.patientToEdit = data[i];
+                  break;
+                }
+              }
+            }
+          }
       );
+
+
     }
 
     // Clear and reset the local storage based on the current refID
